@@ -6,11 +6,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 @Module({
-  imports: [
-        TodoModule, 
-        PrismaModule, ],
+  imports: [TodoModule, PrismaModule],
   controllers: [AppController],
-  providers: [
-        TodoService, AppService],
+  providers: [AppService],
 })
 export class AppModule {}
