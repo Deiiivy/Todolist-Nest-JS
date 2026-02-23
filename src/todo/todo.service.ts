@@ -16,4 +16,8 @@ export class TodoService {
   async delete(id: string) {
     return this.prisma.task.delete({ where: { id } })
   }
+
+  async update(id: string, data: { title: string; description?: string }) {
+    return this.prisma.task.update({ where: { id }, data })
+  }
 }
