@@ -1,3 +1,6 @@
+import { AuthModule } from './auth/auth.module';
+import { AuthService } from './auth/auth.service';
+import { AuthController } from './auth/auth.controller';
 import { TodoModule } from './todo/todo.module';
 import { TodoService } from './todo/todo.service';
 import { PrismaModule } from './prisma/prisma.module';
@@ -6,8 +9,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 @Module({
-  imports: [TodoModule, PrismaModule],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    AuthModule, TodoModule, PrismaModule],
+  controllers: [
+    AuthController, AppController],
+  providers: [
+    AuthService, AppService],
 })
-export class AppModule {}
+export class AppModule { }
