@@ -35,4 +35,20 @@ export class AuthService {
             access_token: this.jwtService.sign(payload),
         };
     } 
+
+    async login(data: { email: string; password: string }) {
+        const user = await this.prisma.user.findUnique({ where: { email: data.email } });
+        if (!user) {
+            throw new BadRequestException('Credenciales inválidas');
+        }
+        const isPasswordValid = await bcrypt.compare(data.password, user.password);
+        if (!isPasswordValid) {
+            throw new BadRequestException('Credenciales inválidas');
+        }
+        const payload = { email: user.email, sub: user.id };
+        return {
+            access_token: this.jwtService.sign(payload),
+        };
+    
+    }
 }
