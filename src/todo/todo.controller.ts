@@ -1,4 +1,4 @@
-import { Controller, Body, Get, Delete,Param, Post, Put, UseGuards } from '@nestjs/common';
+import { Controller, Body, Get, Delete,Param, Post, Put, UseGuards, Request } from '@nestjs/common';
 import { TodoService } from './todo.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
@@ -13,9 +13,9 @@ export class TodoController {
         return this.todoService.create(createTaskDto);
     }
 
-    @Get(':userId')
-    getAllTasks(@Param('userId') userId: string) {
-        return this.todoService.findAll(userId);
+    @Get()
+    getAllTasks(@Request() req) {
+        return this.todoService.findAll(req.user.sub);
     }
 
     @Delete(':id')
