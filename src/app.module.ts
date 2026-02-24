@@ -1,19 +1,13 @@
-import { AuthModule } from './auth/auth.module';
-import { AuthService } from './auth/auth.service';
-import { AuthController } from './auth/auth.controller';
-import { TodoModule } from './todo/todo.module';
-import { TodoService } from './todo/todo.service';
-import { PrismaModule } from './prisma/prisma.module';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { PrismaModule } from './prisma/prisma.module';
+import { AuthModule } from './auth/auth.module';
+import { TodoModule } from './todo/todo.module';
 
 @Module({
-  imports: [
-    AuthModule, TodoModule, PrismaModule],
-  controllers: [
-    AuthController, AppController],
-  providers: [
-    AuthService, AppService],
+  imports: [PrismaModule, AuthModule, TodoModule],
+  controllers: [AppController],
+  providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}
