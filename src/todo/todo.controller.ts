@@ -12,8 +12,8 @@ export class TodoController {
     }
 
     @Get()
-    getAllTasks() {
-        return this.todoService.findAll();
+    getAllTasks(@Param('userId') userId: string) {
+        return this.todoService.findAll(userId);
     }
 
     @Delete(':id')
