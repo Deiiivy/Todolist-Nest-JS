@@ -11,7 +11,7 @@ export class TodoController {
         return this.todoService.create(createTaskDto);
     }
 
-    @Get()
+    @Get(':userId')
     getAllTasks(@Param('userId') userId: string) {
         return this.todoService.findAll(userId);
     }
