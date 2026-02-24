@@ -6,7 +6,7 @@ export class TodoService {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(data: { title: string; description?: string }) {
-    return this.prisma.task.create({ data })
+    return this.prisma.task.create({ data });
   }
 
   async findAll() {
